@@ -28,6 +28,6 @@ AS
 BEGIN
     CALCULATE_SUBTOTAL(order_id,lv_subtotal);
     CALCULATE_SHIP_COST(delivery_city,lv_ship_cost);
-    lv_total_cost : = lv_subtotal + lv_ship_cost;
+    lv_total_cost := lv_subtotal + lv_ship_cost;
     RETURN lv_total_cost;
 END;
