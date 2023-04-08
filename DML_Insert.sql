@@ -28,7 +28,7 @@ INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,
 INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,postal_code) VALUES (address_id_seq.nextval,20237, 'Home', '54 Oakville Rd', 'Scarborough', 'ON', 'M6G 8H6');
 INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,postal_code) VALUES (address_id_seq.nextval,20238, 'Office', '560 Queen St', 'Toronto', 'ON', 'M3F 5V6');
 INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,postal_code) VALUES (address_id_seq.nextval,20239, 'Home', '122 Yonge St', 'Toronto', 'ON', 'M1P 7C0');
-INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,postal_code) VALUES (address_id_seq.nextval,20240, 'Home', '125 Victoria Park Avenue', 'Toronto', 'ON', 'M1X 4C1');
+INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,postal_code) VALUES (address_id_seq.nextval,20240, 'Home', '12 Victoria Park Ave', 'Toronto', 'ON', 'M1X 4C1');
 INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,postal_code) VALUES (address_id_seq.nextval,20241, 'Home', '45 Merton St', 'Toronto', 'ON', 'M3P 1B4');
 INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,postal_code) VALUES (address_id_seq.nextval,20242, 'Home', '123 Bay St', 'Toronto', 'ON', 'M3P 1B5');
 INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,postal_code) VALUES (address_id_seq.nextval,20243, 'Home', '109 Neilson Avenue', 'Toronto', 'ON', 'M0K 3H5');
@@ -76,7 +76,7 @@ INSERT INTO Inventory (PRODUCT_ID,CATEGORY_ID,PRODUCT_NAME,PRODUCT_DESC,STOCK_QT
 INSERT INTO Inventory (PRODUCT_ID,CATEGORY_ID,PRODUCT_NAME,PRODUCT_DESC,STOCK_QTY,PRICE) VALUES (product_id_seq.nextval,4, 'Mango Ice Cream','Premium mango ice cream made with fresh milk and mango cream for a smooth and creamy texture.',29,4.99);
 INSERT INTO Inventory (PRODUCT_ID,CATEGORY_ID,PRODUCT_NAME,PRODUCT_DESC,STOCK_QTY,PRICE) VALUES (product_id_seq.nextval,5, 'Dr. Oetker Frozen Pizza',' Dr. Oetker is a popular brand of frozen pizza in Canada, known for its thin crust and gourmet toppings.',385,3.99);
 INSERT INTO Inventory (PRODUCT_ID,CATEGORY_ID,PRODUCT_NAME,PRODUCT_DESC,STOCK_QTY,PRICE) VALUES (product_id_seq.nextval,5, 'Poutine','Frozen poutine is made with crispy French fries, rich beef gravy, and melty cheese curds for a classic Canadian dish',70,4.99);
-INSERT INTO Inventory (PRODUCT_ID,CATEGORY_ID,PRODUCT_NAME,PRODUCT_DESC,STOCK_QTY,PRICE) VALUES (product_id_seq.nextval,5, 'Cavendish Farms Frozen French Fries','Frozen French fries are made from 100% real potatoes and are carefully cut and fried to perfection.',258,2.99);
+INSERT INTO Inventory (PRODUCT_ID,CATEGORY_ID,PRODUCT_NAME,PRODUCT_DESC,STOCK_QTY,PRICE) VALUES (product_id_seq.nextval,5, 'Cavendish Farms French Fries','Frozen French fries are made from 100% real potatoes and are carefully cut and fried to perfection.',258,2.99);
 INSERT INTO Inventory (PRODUCT_ID,CATEGORY_ID,PRODUCT_NAME,PRODUCT_DESC,STOCK_QTY,PRICE) VALUES (product_id_seq.nextval,5, 'St. Hubert Chicken Pot Pie','Frozen chicken pot pie is a Canadian favorite, made with tender chicken, potatoes, peas, and carrots in a creamy sauce.',471,5.99);
 INSERT INTO Inventory (PRODUCT_ID,CATEGORY_ID,PRODUCT_NAME,PRODUCT_DESC,STOCK_QTY,PRICE) VALUES (product_id_seq.nextval,6, 'Chicken Breasts','Chicken breasts are made from all-natural, grain-fed chickens that are raised without antibiotics.',118,15.9);
 INSERT INTO Inventory (PRODUCT_ID,CATEGORY_ID,PRODUCT_NAME,PRODUCT_DESC,STOCK_QTY,PRICE) VALUES (product_id_seq.nextval,6, 'Pork Tenderlion',' Pork tenderloin is a lean and versatile cut of meat thats perfect for roasting, grilling, or pan-frying.',387,18.4);
@@ -121,6 +121,14 @@ INSERT INTO ORDER_STATUS (STATUS_ID,STATUS) VALUES (501,'In-basket');
 INSERT INTO ORDER_STATUS (STATUS_ID,STATUS) VALUES (502,'Ordered');
 INSERT INTO ORDER_STATUS (STATUS_ID,STATUS) VALUES (503,'Cancelled');
 INSERT INTO ORDER_STATUS (STATUS_ID,STATUS) VALUES (504,'Delivered');
+
+--Payment Status
+INSERT INTO Payments(PAYMENT_ID,order_id,PAYMENT_STATUS,PAYMENT_MODE) VALUES(1,10001,'Paid','Debit/Credit');
+INSERT INTO Payments(PAYMENT_ID,order_id,PAYMENT_STATUS,PAYMENT_MODE) VALUES(2,10002,'Not Paid','Cash');
+INSERT INTO Payments(PAYMENT_ID,order_id,PAYMENT_STATUS,PAYMENT_MODE) VALUES(3,10003,'Paid','Cash');
+--INSERT INTO Payments(PAYMENT_ID,PAYMENT_STATUS,PAYMENT_MODE) VALUES(4,'Paid','Paypal');
+--INSERT INTO Payments(PAYMENT_ID,PAYMENT_STATUS,PAYMENT_MODE) VALUES(5,'Refunded','Debit/Credit');
+--INSERT INTO Payments(PAYMENT_ID,PAYMENT_STATUS,PAYMENT_MODE) VALUES(6,'Failed','Paypal');
 
 ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD';
 
