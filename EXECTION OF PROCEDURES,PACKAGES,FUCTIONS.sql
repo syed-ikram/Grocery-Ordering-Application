@@ -51,6 +51,40 @@ BEGIN
     
 END;
 
+-- Testing code for the Procedure update_order_status
+DECLARE
+    lv_order_id ORDERS.ORDER_ID%TYPE:=10002;
+    lv_status_id ORDER_STATUS.STATUS_ID%TYPE:=504;
+    lv_out_order_id ORDERS.ORDER_ID%TYPE;
+    lv_out_order_status ORDER_STATUS.STATUS%TYPE;
+BEGIN
+
+    SELECT order_id, status 
+    INTO lv_out_order_id,lv_out_order_status
+    FROM orders JOIN order_status USING(status_id)
+    WHERE order_id = lv_order_id;
+
+    DBMS_OUTPUT.PUT_LINE('Order Status before update');
+    DBMS_OUTPUT.PUT_LINE('Order Id: ' ||lv_out_order_id);
+    DBMS_OUTPUT.PUT_LINE('Order Status: ' ||lv_out_order_status);
+
+    update_order_status(lv_order_id, lv_status_id);
+    
+    SELECT order_id, status 
+    INTO lv_out_order_id,lv_out_order_status
+    FROM orders JOIN order_status USING(status_id)
+    WHERE order_id = lv_order_id;
+
+    DBMS_OUTPUT.PUT_LINE('');    
+    DBMS_OUTPUT.PUT_LINE('Order Status after update');
+    DBMS_OUTPUT.PUT_LINE('Order Id: ' ||lv_out_order_id);
+    DBMS_OUTPUT.PUT_LINE('Order Status: ' ||lv_out_order_status);
+    
+END;
+
+
+
+
 
 DECLARE
     lv_order_id ORDERS.ORDER_ID%TYPE;
