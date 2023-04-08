@@ -1,3 +1,4 @@
+--Addresses
 --INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,postal_code) VALUES ('100','20231','Home','12 Eglinton Avenue','Toronto','ON','MD1 5H6');
 INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,postal_code) VALUES (101,20231, 'Office', '451 Lawrence Avenue', 'Toronto', 'ON', 'M4C 6L0');
 INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,postal_code) VALUES (102,20232, 'Home', '411 Ellesmere Rd', 'Scarborough', 'ON', 'M1G 5K3');
