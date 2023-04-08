@@ -30,15 +30,10 @@ CREATE TABLE ORDER_STATUS(
     status varchar(15)
 );
 
-CREATE TABLE PAYMENTS(
-    payment_id NUMBER(5) PRIMARY KEY,
-    payment_status varchar(20),
-    payment_mode varchar(10)
-); 
 
 CREATE TABLE ORDERS(
     order_id NUMBER(5) PRIMARY KEY,
-    order_date date,
+    order_date date NULL,
     ship_date  date NULL,
     customer_id NUMBER(5),
     address_id NUMBER(5),
@@ -49,10 +44,16 @@ CREATE TABLE ORDERS(
     CONSTRAINT FK_OrderAddress FOREIGN KEY (address_id)
     REFERENCES ADDRESSES(address_id),  
     CONSTRAINT FK_OrderStatus FOREIGN KEY (status_id)
-    REFERENCES ORDER_STATUS(status_id),
-    CONSTRAINT FK_OrderPayment FOREIGN KEY (payment_id)
-    REFERENCES PAYMENTS(payment_id)
+    REFERENCES ORDER_STATUS(status_id)
 );
+CREATE TABLE PAYMENTS(
+    payment_id NUMBER(5) PRIMARY KEY,
+    order_id NUMBER(5),
+    payment_status varchar(20),
+    payment_mode varchar(10),
+    CONSTRAINT FK_OrderPayment FOREIGN KEY (order_id)
+    REFERENCES ORDERS(order_id)
+); 
 
 CREATE TABLE PRODUCT_CATEGORIES(
     category_id NUMBER(5) PRIMARY KEY,
@@ -63,7 +64,7 @@ CREATE TABLE INVENTORY(
     product_id NUMBER(5) PRIMARY KEY,
     category_id NUMBER(5),
     product_name varchar(30),
-    product_desc varchar(255),
+    product_desc varchar(500),
     stock_qty NUMBER(4),
     price NUMBER(5,2),
     CONSTRAINT FK_ProductCategory FOREIGN KEY (category_id)
@@ -85,8 +86,20 @@ CREATE SEQUENCE product_id_seq
     START WITH 100
     MAXVALUE 990;
 
+CREATE SEQUENCE order_id_seq
+    INCREMENT BY 10
+    START WITH 100;
+
 CREATE SEQUENCE address_id_seq
     INCREMENT BY 1
     START WITH 100;
+    
+CREATE INDEX inventory.product_name
+ON INVENTORY (product_name );
+
+CREATE INDEX order_items.order_product
+ON ORDER_ITEMS (product_name );
+
+
 
 
