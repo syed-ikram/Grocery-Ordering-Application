@@ -11,8 +11,6 @@ BEGIN
     FROM INVENTORY
     WHERE product_id = p_product_id;
     
-    DBMS_OUTPUT.PUT_LINE(p_product_id);
-    
 RETURN lv_prod_price; 
 END;
 
