@@ -41,7 +41,7 @@ END CALCULATE_SHIP_COST;
 
 
 CREATE OR REPLACE PROCEDURE update_customer_info (
-    customer_id IN NUMBER,
+    p_customer_id IN NUMBER,
     new_name IN VARCHAR2 DEFAULT NULL,
     new_email IN VARCHAR2 DEFAULT NULL    
 )
@@ -50,20 +50,20 @@ BEGIN
     IF new_name IS NOT NULL THEN
         UPDATE customers
         SET customer_name = new_name
-        WHERE customer_id = customer_id;
+        WHERE customer_id = p_customer_id;
     END IF;
     
     IF new_email IS NOT NULL THEN
         UPDATE customers
         SET email = new_email
-        WHERE customer_id = customer_id;
+        WHERE customer_id = p_customer_id;
     END IF;
         
     COMMIT;
 END;
 
 CREATE OR REPLACE PROCEDURE update_order_status (
-    order_id IN ORDERS.ORDER_ID%TYPE,
+    p_order_id IN ORDERS.ORDER_ID%TYPE,
     updated_status_id IN ORDER_STATUS.STATUS_ID%TYPE
 )
 AS
@@ -72,7 +72,7 @@ BEGIN
 
     UPDATE orders
     SET status_id = updated_status_id
-    WHERE order_id = order_id;
+    WHERE order_id = p_order_id;
     
     COMMIT;
 END;
