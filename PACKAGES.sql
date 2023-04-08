@@ -84,8 +84,8 @@ END;
 
 FUNCTION CALCULATE_TOTAL_COST
 (
-    order_id IN ORDER.ORDER_ID%TYPE,
-    delivery_city IN ADDRESS.CITY%TYPE    
+    order_id IN ORDERS.ORDER_ID%TYPE,
+    delivery_city IN ADDRESSES.CITY%TYPE    
 )
 RETURN NUMBER
 AS
@@ -94,7 +94,7 @@ AS
 BEGIN
     CALCULATE_SUBTOTAL(order_id,lv_subtotal);
     CALCULATE_SHIP_COST(delivery_city,lv_ship_cost);
-    gv_total_cost : = lv_subtotal + lv_ship_cost;
+    gv_total_cost := lv_subtotal + lv_ship_cost;
     RETURN gv_total_cost;
 END;
 
