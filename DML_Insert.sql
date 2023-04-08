@@ -1,3 +1,21 @@
+--Customers
+INSERT INTO Customers (customer_id, customer_name, email) VALUES (20231,'Mack Hensley','mackhensley08@gmail.com');
+INSERT INTO Customers (customer_id, customer_name, email) VALUES (20232, 'Petra Wilkerson', 'petrawilkerson@yahoo.com');
+INSERT INTO Customers (customer_id, customer_name, email) VALUES (20233, 'Marcos Flores', 'marcosflores@gmail.com');
+INSERT INTO Customers (customer_id, customer_name, email) VALUES (20234, 'Rachel Zimmerman', 'rachelzimmerman01@gmail.com');
+INSERT INTO Customers (customer_id, customer_name, email) VALUES (20235, 'Jonathon Mckenzie', 'jonathonmckenzie@gmail.com');
+INSERT INTO Customers (customer_id, customer_name, email) VALUES (20236, 'Frederic Oconnor', 'fredericoconnor571@yahoo.com');
+INSERT INTO Customers (customer_id, customer_name, email) VALUES (20237, 'Norris Kaiser', 'norriskaiser@gmail.com');
+INSERT INTO Customers (customer_id, customer_name, email) VALUES (20238, 'Rod Buchanan', 'rodbuchanan13@gmail.com');
+INSERT INTO Customers (customer_id, customer_name, email) VALUES (20239, 'Lonnie Kennedy', 'lonniekennedy01@gmail.com');
+INSERT INTO Customers (customer_id, customer_name, email) VALUES (20240, 'Catalina Dean', 'catalinadean11@gmail.com');
+INSERT INTO Customers (customer_id, customer_name, email) VALUES (20241, 'Nellie Burnett', 'nellieburnett@outlook.com');
+INSERT INTO Customers (customer_id, customer_name, email) VALUES (20242, 'Burl Knight', 'burlknight319@gmail.com');
+INSERT INTO Customers (customer_id, customer_name, email) VALUES (20243, 'Hester Ayers', 'hesterayers205@outlook.com');
+INSERT INTO Customers (customer_id, customer_name, email) VALUES (20244, 'Kory Burton', 'koryburton@gmail.com');
+INSERT INTO Customers (customer_id, customer_name, email) VALUES (20245, 'Rosario Russo', 'rosariorusso@gmail.com');
+
+
 --Addresses
 INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,postal_code) VALUES (address_id_seq.nextval,'20231','Home','12 Eglinton Avenue','Toronto','ON','MD1 5H6');
 INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,postal_code) VALUES (address_id_seq.nextval,20231, 'Office', '451 Lawrence Avenue', 'Toronto', 'ON', 'M4C 6L0');
@@ -16,24 +34,6 @@ INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,
 INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,postal_code) VALUES (address_id_seq.nextval,20243, 'Home', '109 Neilson Avenue', 'Toronto', 'ON', 'M0K 3H5');
 INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,postal_code) VALUES (address_id_seq.nextval,20244, 'Home', '298 Sheppard Ave', 'Scarborough', 'ON', 'M8U 2T4');
 INSERT INTO Addresses (address_id,customer_id,address_name,street,city,province,postal_code) VALUES (address_id_seq.nextval,20245, 'Office', '131 Markham Rd', 'Scarborough', 'ON ', 'M9B 4A5');
-
-
---Customers
-INSERT INTO Customers (customer_id, customer_name, email) VALUES (20231,'Mack Hensley','mackhensley08@gmail.com');
-INSERT INTO Customers (customer_id, customer_name, email) VALUES (20232, 'Petra Wilkerson', 'petrawilkerson@yahoo.com');
-INSERT INTO Customers (customer_id, customer_name, email) VALUES (20233, 'Marcos Flores', 'marcosflores@gmail.com');
-INSERT INTO Customers (customer_id, customer_name, email) VALUES (20234, 'Rachel Zimmerman', 'rachelzimmerman01@gmail.com');
-INSERT INTO Customers (customer_id, customer_name, email) VALUES (20235, 'Jonathon Mckenzie', 'jonathonmckenzie@gmail.com');
-INSERT INTO Customers (customer_id, customer_name, email) VALUES (20236, 'Frederic Oconnor', 'fredericoconnor571@yahoo.com');
-INSERT INTO Customers (customer_id, customer_name, email) VALUES (20237, 'Norris Kaiser', 'norriskaiser@gmail.com');
-INSERT INTO Customers (customer_id, customer_name, email) VALUES (20238, 'Rod Buchanan', 'rodbuchanan13@gmail.com');
-INSERT INTO Customers (customer_id, customer_name, email) VALUES (20239, 'Lonnie Kennedy', 'lonniekennedy01@gmail.com');
-INSERT INTO Customers (customer_id, customer_name, email) VALUES (20240, 'Catalina Dean', 'catalinadean11@gmail.com');
-INSERT INTO Customers (customer_id, customer_name, email) VALUES (20241, 'Nellie Burnett', 'nellieburnett@outlook.com');
-INSERT INTO Customers (customer_id, customer_name, email) VALUES (20242, 'Burl Knight', 'burlknight319@gmail.com');
-INSERT INTO Customers (customer_id, customer_name, email) VALUES (20243, 'Hester Ayers', 'hesterayers205@outlook.com');
-INSERT INTO Customers (customer_id, customer_name, email) VALUES (20244, 'Kory Burton', 'koryburton@gmail.com');
-INSERT INTO Customers (customer_id, customer_name, email) VALUES (20245, 'Rosario Russo', 'rosariorusso@gmail.com');
 
 --Product Category
 INSERT INTO Product_Categories (category_id,category_type) VALUES (1,'Beverages');
@@ -122,20 +122,21 @@ INSERT INTO ORDER_STATUS (STATUS_ID,STATUS) VALUES (502,'Ordered');
 INSERT INTO ORDER_STATUS (STATUS_ID,STATUS) VALUES (503,'Cancelled');
 INSERT INTO ORDER_STATUS (STATUS_ID,STATUS) VALUES (504,'Delivered');
 
---Payment Status
-INSERT INTO Payments(PAYMENT_ID,PAYMENT_STATUS,PAYMENT_MODE) VALUES(1,'Paid','Debit/Credit');
-INSERT INTO Payments(PAYMENT_ID,PAYMENT_STATUS,PAYMENT_MODE) VALUES(2,'Not Paid','Cash');
-INSERT INTO Payments(PAYMENT_ID,PAYMENT_STATUS,PAYMENT_MODE) VALUES(3,'Paid','Cash');
-INSERT INTO Payments(PAYMENT_ID,PAYMENT_STATUS,PAYMENT_MODE) VALUES(4,'Paid','Paypal');
-INSERT INTO Payments(PAYMENT_ID,PAYMENT_STATUS,PAYMENT_MODE) VALUES(5,'Refunded','Debit/Credit');
-INSERT INTO Payments(PAYMENT_ID,PAYMENT_STATUS,PAYMENT_MODE) VALUES(6,'Failed','Paypal');
-
 ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD';
 
-INSERT INTO Orders (ORDER_ID, ORDER_DATE, SHIP_DATE, CUSTOMER_ID, ADDRESS_ID, STATUS_ID,PAYMENT_ID) VALUES (10001,'2023-01-03','2023-01-06','20231',117,504,11);
-INSERT INTO Orders (ORDER_ID, ORDER_DATE, SHIP_DATE, CUSTOMER_ID, ADDRESS_ID, STATUS_ID,PAYMENT_ID) VALUES (10002,'2023-01-23','2023-01-25','20231',118,504,11);
-INSERT INTO Orders (ORDER_ID, ORDER_DATE, SHIP_DATE, CUSTOMER_ID, ADDRESS_ID, STATUS_ID,PAYMENT_ID) VALUES (10003,'2023-02-23','2023-02-25','20232',119,504,13);
+INSERT INTO Orders (ORDER_ID, ORDER_DATE, SHIP_DATE, CUSTOMER_ID, ADDRESS_ID, STATUS_ID) VALUES (10001,'2023-01-03','2023-01-06','20231',111,504);
+INSERT INTO Orders (ORDER_ID, ORDER_DATE, SHIP_DATE, CUSTOMER_ID, ADDRESS_ID, STATUS_ID) VALUES (10002,'2023-01-23','2023-01-25','20231',112,504);
+INSERT INTO Orders (ORDER_ID, ORDER_DATE, SHIP_DATE, CUSTOMER_ID, ADDRESS_ID, STATUS_ID) VALUES (10003,'2023-02-23','2023-02-25','20232',113,504);
 
 INSERT INTO ORDER_ITEMS (PRODUCT_ID,ORDER_ID,QUANTITY) VALUES (200,10001,1);
 INSERT INTO ORDER_ITEMS (PRODUCT_ID,ORDER_ID,QUANTITY) VALUES (150,10002,1);
 INSERT INTO ORDER_ITEMS (PRODUCT_ID,ORDER_ID,QUANTITY) VALUES (160,10003,1);
+
+--Payment Status
+INSERT INTO Payments(PAYMENT_ID,order_id,PAYMENT_STATUS,PAYMENT_MODE) VALUES(1,10001,'Paid','Debit/Credit');
+INSERT INTO Payments(PAYMENT_ID,order_id,PAYMENT_STATUS,PAYMENT_MODE) VALUES(2,10002,'Not Paid','Cash');
+INSERT INTO Payments(PAYMENT_ID,order_id,PAYMENT_STATUS,PAYMENT_MODE) VALUES(3,10003,'Paid','Cash');
+--INSERT INTO Payments(PAYMENT_ID,PAYMENT_STATUS,PAYMENT_MODE) VALUES(4,'Paid','Paypal');
+--INSERT INTO Payments(PAYMENT_ID,PAYMENT_STATUS,PAYMENT_MODE) VALUES(5,'Refunded','Debit/Credit');
+--INSERT INTO Payments(PAYMENT_ID,PAYMENT_STATUS,PAYMENT_MODE) VALUES(6,'Failed','Paypal');
+
