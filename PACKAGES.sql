@@ -1,24 +1,20 @@
-
 CREATE OR REPLACE PACKAGE OrderManagement_PP
 IS
 gv_total_cost NUMBER;
 
-FUNCTION PRODUCT_PRICE 
-(
-    product_id IN INVENTORY.PRODUCT_ID%TYPE
-)
-RETURN INVENTORY.PRICE%TYPE;
+FUNCTION PRODUCT_PRICE (
+    p_product_id IN INVENTORY.PRODUCT_ID%TYPE)
+    RETURN INVENTORY.PRICE%TYPE;
 
-FUNCTION CALCULATE_TOTAL_COST
-(
+FUNCTION CALCULATE_TOTAL_COST(
     order_id IN ORDERS.ORDER_ID%TYPE,
-    delivery_city IN ADDRESSES.CITY%TYPE    
-)
-RETURN NUMBER;
+    delivery_city IN ADDRESSES.CITY%TYPE)
+    RETURN NUMBER;
 
 PROCEDURE CALCULATE_SUBTOTAL(
     P_ORDER_ID IN ORDERS.ORDER_ID%TYPE,
     P_TOTAL_COST OUT NUMBER);
+
 PROCEDURE CALCULATE_SHIP_COST(
     p_city IN ADDRESSES.CITY%TYPE,
     p_ship_cost OUT NUMBER);
@@ -26,6 +22,39 @@ END;
 
 CREATE OR REPLACE PACKAGE BODY OrderManagement_PP
 IS
+
+FUNCTION PRODUCT_PRICE 
+    (
+    p_product_id IN INVENTORY.PRODUCT_ID%TYPE
+    )
+    RETURN INVENTORY.PRICE%TYPE
+    AS
+        lv_prod_price INVENTORY.PRICE%TYPE;
+    BEGIN
+        SELECT price
+        INTO lv_prod_price
+        FROM INVENTORY
+        WHERE product_id = p_product_id;
+        
+    RETURN lv_prod_price; 
+END;
+
+FUNCTION CALCULATE_TOTAL_COST
+(
+    order_id IN ORDERS.ORDER_ID%TYPE,
+    delivery_city IN ADDRESSES.CITY%TYPE    
+)
+RETURN NUMBER
+AS
+    lv_subtotal NUMBER;
+    lv_ship_cost NUMBER;
+BEGIN
+    CALCULATE_SUBTOTAL(order_id,lv_subtotal);
+    CALCULATE_SHIP_COST(delivery_city,lv_ship_cost);
+    gv_total_cost := lv_subtotal + lv_ship_cost;
+    RETURN gv_total_cost;
+END;
+
 PROCEDURE CALCULATE_SUBTOTAL(
     P_ORDER_ID IN ORDERS.ORDER_ID%TYPE,
     P_TOTAL_COST OUT NUMBER)
@@ -36,6 +65,7 @@ BEGIN
     FROM order_items
     WHERE ORDER_ID = P_ORDER_ID;    
 END CALCULATE_SUBTOTAL;
+
 
 PROCEDURE CALCULATE_SHIP_COST(
     p_city IN ADDRESSES.CITY%TYPE,
@@ -65,37 +95,5 @@ BEGIN
         p_ship_cost := lv_default_cost + 18;
     END IF;
 END CALCULATE_SHIP_COST;
-
-FUNCTION PRODUCT_PRICE 
-(
-    product_id IN INVENTORY.PRODUCT_ID%TYPE
-)
-RETURN INVENTORY.PRICE%TYPE
-AS
-    lv_prod_price INVENTORY.PRICE%TYPE;
-BEGIN
-    SELECT price
-    INTO lv_prod_price
-    FROM INVENTORY
-    WHERE product_id = product_id;
-    
-RETURN lv_prod_price; 
-END;
-
-FUNCTION CALCULATE_TOTAL_COST
-(
-    order_id IN ORDERS.ORDER_ID%TYPE,
-    delivery_city IN ADDRESSES.CITY%TYPE    
-)
-RETURN NUMBER
-AS
-    lv_subtotal NUMBER;
-    lv_ship_cost NUMBER;
-BEGIN
-    CALCULATE_SUBTOTAL(order_id,lv_subtotal);
-    CALCULATE_SHIP_COST(delivery_city,lv_ship_cost);
-    gv_total_cost := lv_subtotal + lv_ship_cost;
-    RETURN gv_total_cost;
-END;
 
 END;
