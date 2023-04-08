@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION PRODUCT_PRICE 
 (
-    product_id IN INVENTORY.PRODUCT_ID%TYPE
+    p_product_id IN INVENTORY.PRODUCT_ID%TYPE
 )
 RETURN INVENTORY.PRICE%TYPE
 AS
@@ -9,7 +9,9 @@ BEGIN
     SELECT price
     INTO lv_prod_price
     FROM INVENTORY
-    WHERE product_id = product_id;
+    WHERE product_id = p_product_id;
+    
+    DBMS_OUTPUT.PUT_LINE(p_product_id);
     
 RETURN lv_prod_price; 
 END;
