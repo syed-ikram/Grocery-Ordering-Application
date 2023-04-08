@@ -99,4 +99,4 @@ BEGIN
       lv_total_cost:= OrderManagement_PP.CALCULATE_TOTAL_COST(10002,'scarborough');
       DBMS_OUTPUT.PUT_LINE('Total cost for the order 10002: $' ||lv_total_cost);
 END;
-END;
+
