@@ -1,21 +1,23 @@
+
 --ORDER CANCEL TRIGGER
+
 CREATE OR REPLACE TRIGGER ORD_CANCEL_TRG
     AFTER UPDATE
     ON ORDERS
     FOR EACH ROW
 DECLARE
     CURSOR cv_orderitem IS
-    SELECT * from order_item
+    SELECT * from order_items
     where order_id = :NEW.order_id;    
 BEGIN
     DBMS_OUTPUT.PUT_LINE('ORD_CANCEL_TRG Fired');
-    IF :NEW.status_id = 3  THEN
+    IF :NEW.status_id = 503  THEN
         DBMS_OUTPUT.PUT_LINE('');
-        FOR rec_orderitem in cv_orderitem LOOP
+        FOR rec_item in cv_orderitem LOOP
             DBMS_OUTPUT.PUT_LINE('');
             UPDATE INVENTORY
-            SET stock_qty = stock_qty + orderitem.quantity
-            where product_id = rec_orderitem.product;           
+            SET stock_qty = stock_qty + rec_item.quantity
+            where product_id = rec_item.product_id;           
         END LOOP;
     END IF;
 END;
@@ -27,17 +29,17 @@ CREATE OR REPLACE TRIGGER ORD_CONFIRMED_TRG
     FOR EACH ROW
 DECLARE
     CURSOR cv_orderitem IS
-    SELECT * from order_item
+    SELECT * from order_items
     where order_id = :NEW.order_id;    
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('ORD_CANCEL_TRG Fired');
-    IF :NEW.status_id = 2  THEN
+    DBMS_OUTPUT.PUT_LINE('ORD_Confirmed_TRG Fired');
+    IF :NEW.status_id = 502  THEN
         DBMS_OUTPUT.PUT_LINE('');
-        FOR rec_orderitem in cv_orderitem LOOP
+        FOR rec_order in cv_orderitem LOOP
             DBMS_OUTPUT.PUT_LINE('');
             UPDATE INVENTORY
-            SET stock_qty = stock_qty - orderitem.quantity
-            where product_id = rec_orderitem.product;           
+            SET stock_qty = stock_qty - rec_order.quantity
+            where product_id = rec_order.product_id;           
         END LOOP;
     END IF;
 END;
@@ -48,22 +50,17 @@ CREATE OR REPLACE TRIGGER ORD_DELIVERED_TRG
     ON ORDERS
     FOR EACH ROW
 DECLARE 
-    lv_payment_id orders.payment_id%TYPE;
+    lv_payment_id payments.payment_id%TYPE;
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('ORD_CANCEL_TRG Fired');
-    IF :NEW.status_id = 4  THEN
+    DBMS_OUTPUT.PUT_LINE('ORD_Delivered_TRG Fired');
+    IF :NEW.status_id = 504  THEN
         DBMS_OUTPUT.PUT_LINE('');
-        SELECT payment_id 
-        INTO lv_payment_id
-        FROM ORDERS
-        WHERE order_id = :NEW.order_id;
         --update
         UPDATE PAYMENTS
         SET payment_status = 'PAID'
-        where payment_id = lv_payment_id;        
+        where order_id = :NEW.order_id;        
     END IF;
 END;
-
 
 --Order Date 
 CREATE OR REPLACE TRIGGER ORD_DATE_TRG
@@ -77,7 +74,7 @@ BEGIN
     SELECT SYSDATE
     INTO lv_current_date
     FROM dual;
-    IF :NEW.status_id = 2  THEN
+    IF :NEW.status_id = 502  THEN
         DBMS_OUTPUT.PUT_LINE('');
         --update
         UPDATE ORDERS
@@ -85,3 +82,4 @@ BEGIN
         where order_id = :NEW.order_id;        
     END IF;
 END;
+
