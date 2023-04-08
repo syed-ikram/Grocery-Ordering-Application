@@ -94,10 +94,10 @@ CREATE SEQUENCE address_id_seq
     INCREMENT BY 1
     START WITH 100;
     
-CREATE INDEX inventory.product_name_idx
+CREATE INDEX product_name_idx
 ON INVENTORY (product_name );
 
-CREATE INDEX order_items.order_product_idx
+CREATE INDEX order_product_idx
 ON ORDER_ITEMS (order_id, product_id);
 
 
