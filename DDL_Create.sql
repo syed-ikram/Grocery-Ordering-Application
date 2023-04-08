@@ -7,6 +7,7 @@ DROP TABLE PRODUCT_CATEGORIES;
 DROP TABLE INVENTORY;
 DROP TABLE ORDER_ITEMS;
 
+
 CREATE TABLE CUSTOMERS(
     customer_id NUMBER(5) PRIMARY KEY,
     customer_name varchar(30) NOT NULL,
@@ -48,8 +49,8 @@ CREATE TABLE ORDERS(
 CREATE TABLE PAYMENTS(
     payment_id NUMBER(5) PRIMARY KEY,
     order_id NUMBER(5),
-    payment_status varchar(20),
-    payment_mode varchar(10),
+    payment_status varchar(50),
+    payment_mode varchar(50),
     CONSTRAINT FK_OrderPayment FOREIGN KEY (order_id)
     REFERENCES ORDERS(order_id)
 ); 
@@ -93,11 +94,11 @@ CREATE SEQUENCE address_id_seq
     INCREMENT BY 1
     START WITH 100;
     
-CREATE INDEX inventory.product_name
+CREATE INDEX inventory.product_name_idx
 ON INVENTORY (product_name );
 
-CREATE INDEX order_items.order_product
-ON ORDER_ITEMS (product_name );
+CREATE INDEX order_items.order_product_idx
+ON ORDER_ITEMS (order_id, product_id);
 
 
 
