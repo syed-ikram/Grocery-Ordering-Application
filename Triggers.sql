@@ -64,3 +64,24 @@ BEGIN
     END IF;
 END;
 
+
+--Order Date 
+CREATE OR REPLACE TRIGGER ORD_DATE_TRG
+    AFTER UPDATE
+    ON ORDERS
+    FOR EACH ROW
+DECLARE 
+    lv_current_date orders.order_date%TYPE;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('ORD_Date_TRG Fired');
+    SELECT SYSDATE
+    INTO lv_current_date
+    FROM dual;
+    IF :NEW.status_id = 2  THEN
+        DBMS_OUTPUT.PUT_LINE('');
+        --update
+        UPDATE ORDERS
+        SET order_date = lv_current_date
+        where order_id = :NEW.order_id;        
+    END IF;
+END;
