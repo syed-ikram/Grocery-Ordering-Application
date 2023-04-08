@@ -63,19 +63,15 @@ BEGIN
 END;
 
 CREATE OR REPLACE PROCEDURE update_order_status (
-    order_id IN NUMBER,
-    updated_status IN VARCHAR2
+    order_id IN ORDERS.ORDER_ID%TYPE,
+    updated_status_id IN ORDER_STATUS.STATUS_ID%TYPE
 )
 AS
     lv_status_id NUMBER;
 BEGIN
 
-    SELECT status_id INTO lv_status_id
-    FROM order_status
-    WHERE status = updated_status;
-
     UPDATE orders
-    SET status_id = lv_status_id
+    SET status_id = updated_status_id
     WHERE order_id = order_id;
     
     COMMIT;
