@@ -82,19 +82,21 @@ BEGIN
     
 END;
 
-
-
-
-
+-- Testing code for the package OrderManagement_PP
+DROP FUNCTION CALCULATE_SUBTOTAL;
+DROP FUNCTION CALCULATE_SHIP_COST;
+DROP FUNCTION CALCULATE_TOTAL_COST;
 DECLARE
-    lv_order_id ORDERS.ORDER_ID%TYPE;
-    lv_delivery_city ADDRESS.CITY%TYPE;    
+    lv_ship_cost NUMBER;
+    lv_subtotal INVENTORY.PRICE%TYPE;
+    lv_total_cost NUMBER;
+BEGIN
+      OrderManagement_PP.CALCULATE_SUBTOTAL(10002,lv_subtotal);
+      OrderManagement_PP.CALCULATE_SHIP_COST('scarborough',lv_ship_cost);
+      DBMS_OUTPUT.PUT_LINE('SubTotal for the order 10002: ' ||lv_subtotal);
+      DBMS_OUTPUT.PUT_LINE('Shipping cost for the location: $' ||lv_ship_cost);
     
-BEGIN 
-
-    OrderManagement_PP.CALCULATE_TOTAL_COST(lv_order_id,lv_delivery_city);
-    DBMS_OUTPUT.PUT_LINE('TOTAL COST: ' || OrderManagement_PP.gv_total_cost);
-
+      lv_total_cost:= OrderManagement_PP.CALCULATE_TOTAL_COST(10002,'scarborough');
+      DBMS_OUTPUT.PUT_LINE('Total cost for the order 10002: $' ||lv_total_cost);
 END;
-
-
+END;
