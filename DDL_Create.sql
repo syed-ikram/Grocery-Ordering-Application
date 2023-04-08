@@ -38,7 +38,6 @@ CREATE TABLE ORDERS(
     customer_id NUMBER(5),
     address_id NUMBER(5),
     status_id NUMBER(5),
-    payment_id NUMBER(5),
     CONSTRAINT FK_CustomerOrder FOREIGN KEY (customer_id)
     REFERENCES CUSTOMERS(customer_id),
     CONSTRAINT FK_OrderAddress FOREIGN KEY (address_id)
