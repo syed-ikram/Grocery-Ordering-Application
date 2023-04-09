@@ -53,7 +53,7 @@ END;
 
 -- Testing code for the Procedure update_order_status
 DECLARE
-    lv_order_id ORDERS.ORDER_ID%TYPE:=10002;
+    lv_order_id ORDERS.ORDER_ID%TYPE:=10001;
     lv_status_id ORDER_STATUS.STATUS_ID%TYPE:=504;
     lv_out_order_id ORDERS.ORDER_ID%TYPE;
     lv_out_order_status ORDER_STATUS.STATUS%TYPE;
