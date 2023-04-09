@@ -566,9 +566,13 @@ CREATE OR REPLACE TRIGGER ORD_CONFIRMED_TRG
 DECLARE
     CURSOR cv_orderitem IS
     SELECT * from order_items
-    where order_id = :NEW.order_id;    
+    where order_id = :NEW.order_id;
+    lv_current_date orders.order_date%TYPE;
 BEGIN
     DBMS_OUTPUT.PUT_LINE('');
+    SELECT SYSDATE
+    INTO lv_current_date
+    FROM dual;
     IF :NEW.status_id = 502  THEN
         DBMS_OUTPUT.PUT_LINE('ORD_Confirmed_TRG Fired');
         FOR rec_order in cv_orderitem LOOP
@@ -577,6 +581,9 @@ BEGIN
             SET stock_qty = stock_qty - rec_order.quantity
             where product_id = rec_order.product_id;           
         END LOOP;
+        UPDATE ORDERS
+        SET order_date = lv_current_date
+        where order_id = :NEW.order_id;
     END IF;
 END;
 
@@ -598,24 +605,4 @@ BEGIN
     END IF;
 END;
 
---Order Date 
-CREATE OR REPLACE TRIGGER ORD_DATE_TRG
-    AFTER UPDATE
-    ON ORDERS
-    FOR EACH ROW
-DECLARE 
-    lv_current_date orders.order_date%TYPE;
-BEGIN
-    DBMS_OUTPUT.PUT_LINE('');
-    SELECT SYSDATE
-    INTO lv_current_date
-    FROM dual;
-    lv_current_date := TO_CHAR(lv_current_date, 'YYYY-MM-DD');
-    IF :NEW.status_id = 502  THEN
-        DBMS_OUTPUT.PUT_LINE('ORD_Date_TRG Fired');
-        --update
-        UPDATE ORDERS
-        SET order_date = lv_current_date
-        where order_id = :NEW.order_id;        
-    END IF;
-END;
+
