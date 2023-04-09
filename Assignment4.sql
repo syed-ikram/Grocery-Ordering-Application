@@ -268,6 +268,9 @@ BEGIN
 RETURN lv_prod_price; 
 END;
 
+
+
+
 CREATE OR REPLACE PROCEDURE CALCULATE_SUBTOTAL(
     P_ORDER_ID IN ORDERS.ORDER_ID%TYPE,
     P_TOTAL_COST OUT NUMBER)
@@ -278,6 +281,9 @@ BEGIN
     FROM order_items
     WHERE ORDER_ID = P_ORDER_ID;    
 END CALCULATE_SUBTOTAL;
+
+
+
 
 CREATE OR REPLACE PROCEDURE CALCULATE_SHIP_COST(
     p_city IN ADDRESSES.CITY%TYPE,
@@ -308,6 +314,10 @@ BEGIN
     END IF;
 END CALCULATE_SHIP_COST;
 
+
+
+
+
 CREATE OR REPLACE PROCEDURE update_customer_info (
     p_customer_id IN NUMBER,
     new_name IN VARCHAR2 DEFAULT NULL,
@@ -330,20 +340,31 @@ BEGIN
     COMMIT;
 END;
 
+
+
+
+
 CREATE OR REPLACE PROCEDURE update_order_status (
     p_order_id IN ORDERS.ORDER_ID%TYPE,
     updated_status_id IN ORDER_STATUS.STATUS_ID%TYPE
 )
+
 AS
     lv_status_id NUMBER;
 BEGIN
-
     UPDATE orders
     SET status_id = updated_status_id
     WHERE order_id = p_order_id;
-    
     COMMIT;
+
+EXCEPTION
+    WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('An error occured: ' || SQLERRM);
+
 END;
+
+
+
 
 -- SHOULD BE RUN AFTER CREATING THE PROCEDURE CALCULATE_SUB_TOTAL & CALCUATE_SHIP_COST 
 CREATE OR REPLACE FUNCTION CALCULATE_TOTAL_COST
@@ -361,7 +382,14 @@ BEGIN
     CALCULATE_SHIP_COST(delivery_city,lv_ship_cost);
     lv_total_cost := lv_subtotal + lv_ship_cost;
     RETURN lv_total_cost;
+    
+EXCEPTION
+    WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Error occurred: ' || SQLERRM);
 END;
+
+
+
 
 CREATE OR REPLACE PACKAGE OrderManagement_PP
 IS
@@ -385,6 +413,9 @@ PROCEDURE CALCULATE_SHIP_COST(
     p_ship_cost OUT NUMBER);
 END;
 
+
+
+
 CREATE OR REPLACE PACKAGE BODY OrderManagement_PP
 IS
 
@@ -404,6 +435,9 @@ FUNCTION PRODUCT_PRICE
     RETURN lv_prod_price; 
 END;
 
+
+
+
 FUNCTION CALCULATE_TOTAL_COST
 (
     order_id IN ORDERS.ORDER_ID%TYPE,
@@ -420,6 +454,9 @@ BEGIN
     RETURN gv_total_cost;
 END;
 
+
+
+
 PROCEDURE CALCULATE_SUBTOTAL(
     P_ORDER_ID IN ORDERS.ORDER_ID%TYPE,
     P_TOTAL_COST OUT NUMBER)
@@ -430,6 +467,9 @@ BEGIN
     FROM order_items
     WHERE ORDER_ID = P_ORDER_ID;    
 END CALCULATE_SUBTOTAL;
+
+
+
 
 
 PROCEDURE CALCULATE_SHIP_COST(
