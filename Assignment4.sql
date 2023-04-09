@@ -100,6 +100,9 @@ ON INVENTORY (product_name );
 CREATE INDEX order_product_idx
 ON ORDER_ITEMS (order_id, product_id);
 
+--Date format
+ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD';
+
 
 --Customers
 INSERT INTO Customers (customer_id, customer_name, email) VALUES (20231,'Mack Hensley','mackhensley08@gmail.com');
