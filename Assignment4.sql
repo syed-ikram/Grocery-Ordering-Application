@@ -582,9 +582,6 @@ BEGIN
             SET stock_qty = stock_qty - rec_order.quantity
             where product_id = rec_order.product_id;           
         END LOOP;
-        UPDATE ORDERS
-        SET order_date = lv_current_date
-        where order_id = :NEW.order_id;
     END IF;
 END;
 
