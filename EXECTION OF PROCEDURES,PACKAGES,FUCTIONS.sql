@@ -100,3 +100,12 @@ BEGIN
       DBMS_OUTPUT.PUT_LINE('Total cost for the order 10002: $' ||lv_total_cost);
 END;
 
+--- TRIGGERS EXECUTION SYNTAX
+
+BEGIN
+    UPDATE ORDERS
+    SET ORDERS.STATUS_ID = 503
+    WHERE ORDERS.ORDER_ID = 10003;
+END;
+
+
