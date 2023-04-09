@@ -543,9 +543,9 @@ DECLARE
     SELECT * from order_items
     where order_id = :NEW.order_id;    
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('ORD_CANCEL_TRG Fired');
+    DBMS_OUTPUT.PUT_LINE('');
     IF :NEW.status_id = 503  THEN
-        DBMS_OUTPUT.PUT_LINE('');
+        DBMS_OUTPUT.PUT_LINE('ORD_CANCEL_TRG Fired');
         FOR rec_item in cv_orderitem LOOP
             DBMS_OUTPUT.PUT_LINE('');
             UPDATE INVENTORY
@@ -565,9 +565,9 @@ DECLARE
     SELECT * from order_items
     where order_id = :NEW.order_id;    
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('ORD_Confirmed_TRG Fired');
+    DBMS_OUTPUT.PUT_LINE('');
     IF :NEW.status_id = 502  THEN
-        DBMS_OUTPUT.PUT_LINE('');
+        DBMS_OUTPUT.PUT_LINE('ORD_Confirmed_TRG Fired');
         FOR rec_order in cv_orderitem LOOP
             DBMS_OUTPUT.PUT_LINE('');
             UPDATE INVENTORY
@@ -585,9 +585,9 @@ CREATE OR REPLACE TRIGGER ORD_DELIVERED_TRG
 DECLARE 
     lv_payment_id payments.payment_id%TYPE;
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('ORD_Delivered_TRG Fired');
+    DBMS_OUTPUT.PUT_LINE('');
     IF :NEW.status_id = 504  THEN
-        DBMS_OUTPUT.PUT_LINE('');
+        DBMS_OUTPUT.PUT_LINE('ORD_Delivered_TRG Fired');
         --update
         UPDATE PAYMENTS
         SET payment_status = 'PAID'
@@ -603,12 +603,12 @@ CREATE OR REPLACE TRIGGER ORD_DATE_TRG
 DECLARE 
     lv_current_date orders.order_date%TYPE;
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('ORD_Date_TRG Fired');
+    DBMS_OUTPUT.PUT_LINE('');
     SELECT SYSDATE
     INTO lv_current_date
     FROM dual;
     IF :NEW.status_id = 502  THEN
-        DBMS_OUTPUT.PUT_LINE('');
+        DBMS_OUTPUT.PUT_LINE('ORD_Date_TRG Fired');
         --update
         UPDATE ORDERS
         SET order_date = lv_current_date
