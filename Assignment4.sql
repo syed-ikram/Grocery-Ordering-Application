@@ -607,6 +607,7 @@ BEGIN
     SELECT SYSDATE
     INTO lv_current_date
     FROM dual;
+    lv_current_date := TO_CHAR(lv_current_date, 'YYYY-MM-DD');
     IF :NEW.status_id = 502  THEN
         DBMS_OUTPUT.PUT_LINE('ORD_Date_TRG Fired');
         --update
