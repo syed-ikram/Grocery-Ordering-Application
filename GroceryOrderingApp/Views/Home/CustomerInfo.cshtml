@@ -1,0 +1,17 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "CustomerInfo";
+}
+
+<h1>CustomerInfo</h1>
+<div>
+   <form method="post">
+       <input class="form-control" asp-for="CUSTOMER_ID"/>
+       <button class="form-control w-25" type="submit">get info</button>
+   </form>   
+</div>
+@if(Model != null)
+{
+    <p>@Model.CUSTOMER_NAME</p>
+    <p>@Model.EMAIL</p>
+}

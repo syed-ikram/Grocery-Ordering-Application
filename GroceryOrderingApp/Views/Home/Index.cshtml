@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Customer>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>Customers</h2>
+<div>
+   
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Customer Id</th>
+            <th>Customer Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>@obj.CUSTOMER_ID</td>
+                <td>@obj.CUSTOMER_NAME</td>
+                <td>@obj.EMAIL</td>
+            </tr>
+        }
+    </tbody>
+</table>
