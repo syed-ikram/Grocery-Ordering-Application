@@ -1,0 +1,255 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Home";
+}
+<style>
+    *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: inherit;
+        font-family: 'Inter', sans-serif;
+    }
+
+
+    body {
+        box-sizing: border-box;
+        background-color: #DFEFD1;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .header {
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #327430;
+    }
+
+    .header__logo {
+        width: 32px;
+        height: 32px;
+        border-radius: 12px;
+    }
+
+
+    .header__nav * + * {
+        margin-left: 12px;
+    }
+
+    .main {
+        padding-top: 120px;
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+
+    .main__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .searchContainer {
+        display: flex;
+        align-items: center;
+    }
+
+        .searchContainer .searchbar {
+            margin-left: 12px;
+        }
+
+    .searchbar {
+        width: 100%;
+        height: 80px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 24px;
+        border: 1px solid #99A194;
+        background-color: white;
+    }
+
+    .searchbar__input {
+        font-size: 24px;
+        color: #7D7D7D;
+        flex-grow: 1;
+        border: none;
+    }
+
+        .searchbar__input:focus {
+            outline: none;
+        }
+
+    .searchbar__icon {
+        width: 32px;
+        height: 32px;
+        flex-shrink: 0;
+        margin-left: auto;
+        cursor: pointer;
+    }
+
+        .searchbar__icon:hover path {
+            fill: #7D7D7D;
+        }
+
+    .product_container {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 40px;
+    }
+
+    .product {
+        padding: 16px;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 1px 2px 2px #A7B49D;
+        width: 196px;
+        margin:5px;
+    }
+
+        .product h2 {
+            font-size: 24px;
+            text-align: center;
+            overflow:hidden;
+            text-overflow : ellipsis;
+            white-space:nowrap;
+        }
+
+        .product .btn--danger {
+            margin-top: 12px;
+            width: 100%;
+        }
+
+        .product .qty-selector {
+            margin-top: 12px;
+        }
+
+    .qty-selector {
+        border-radius: 12px;
+        height: 48px;
+        width: 100%;
+        margin-top: 12px;
+        background-color: #327430;
+        display: flex;
+    }
+
+    .qty-count, .qty-decrement, .qty-increment {
+        text-align: center;
+        line-height: 48px;
+        font-size: 24px;
+        color: white;
+    }
+
+    .qty-count {
+        display: inline-block;
+        width: 48px;
+        box-shadow: inset 0 4px 4px 0 rgb(0,0, 0, 0.25);
+    }
+
+    .qty-decrement, .qty-increment {
+        width: calc((100% - 48px) / 2);
+        cursor: pointer;
+    }
+
+    .qty-decrement {
+        border-radius: 12px 0 0 12px;
+    }
+
+    .qty-increment {
+        border-radius: 0 12px 12px 0;
+    }
+
+        .qty-decrement:active, .qty-increment:active {
+            box-shadow: inset 0 4px 4px 0 rgb(0, 0, 0, 0.25);
+        }
+
+
+
+    .btn {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 12px;
+        cursor: pointer;
+    }
+
+    .btn--primary, .btn--danger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 12px;
+    }
+
+    .btn--primary {
+        background-color: white;
+    }
+
+        .btn--primary:hover {
+            cursor: pointer;
+            box-shadow: 0 1px 2px 0px rgba(241, 237, 237, 0.743);
+        }
+
+    .btn--danger {
+        background-color: #9D263B;
+        color: white;
+        cursor: pointer;
+    }
+
+    .btn--ghost {
+        font-size: 16px;
+        color: white;
+    }
+
+    .btn--danger:hover {
+        background-color: #9e3e50;
+    }
+
+    .detail-container {
+        margin-top: 16px;
+        border-radius: 12px;
+        background-color: white;
+        box-shadow: 1px 2px 2px #A7B49D;
+        padding: 24px;
+    }
+
+        .detail-container * + * {
+            margin-top: 12px;
+        }
+
+    .detail-name {
+        font-size: 18px;
+    }
+
+    .detail-value {
+        font-size: 16px;
+        color: #6b6768d7;
+    }
+</style>
+
+<h1>Products</h1>
+<section class="product_container">
+    @foreach (var obj in Model)
+    {
+        <article class="product">
+            <h2>@obj.PRODUCT_NAME</h2>
+            <h6 class="text-center">$@obj.PRICE</h6>
+            <div class="qty-selector">
+                <button class="qty-decrement btn">-</button>
+                <span class="qty-count">0</span>
+                <button class="qty-increment btn">+</button>
+            </div>
+        </article>
+    }
+    
+</section>
+
+

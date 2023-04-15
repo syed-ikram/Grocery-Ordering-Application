@@ -19,6 +19,11 @@ namespace GroceryOrderingApp.Controllers
             _db = db;
         }
 
+        public IActionResult Home()
+        {
+            IEnumerable<Product> list = _db.INVENTORY;
+            return View(list);
+        }
         public IActionResult Index()
         {
             IEnumerable<Customer> customers = _db.CUSTOMERS;
@@ -69,7 +74,7 @@ namespace GroceryOrderingApp.Controllers
 
             // Close the connection
             connection.Close();
-            return View(customer);
+            return RedirectToAction("Index");
         }
         public IActionResult Privacy()
         {

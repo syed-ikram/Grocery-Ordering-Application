@@ -10,5 +10,6 @@ namespace GroceryOrderingApp.Data
 
         }
         public DbSet<Customer> CUSTOMERS { get; set; }
+        public DbSet<Product> INVENTORY { get; set; }
     }
 }
