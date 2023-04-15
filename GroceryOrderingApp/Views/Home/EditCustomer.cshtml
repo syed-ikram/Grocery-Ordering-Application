@@ -1,0 +1,15 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "EditCustomer";
+}
+
+<h1>EditCustomer</h1>
+
+<div class="w-50">
+    <form method="post">
+        <input asp-for="CUSTOMER_ID" type="hidden" class="disabled form-control"/>
+        <input asp-for="CUSTOMER_NAME" class="form-control" />
+        <input asp-for="EMAIL" class="form-control" />
+        <button type="submit" class="btn btn-primary w-25">Update</button>
+    </form>
+</div>

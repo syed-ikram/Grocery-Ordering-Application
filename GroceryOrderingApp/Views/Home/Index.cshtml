@@ -22,6 +22,9 @@
                 <td>@obj.CUSTOMER_ID</td>
                 <td>@obj.CUSTOMER_NAME</td>
                 <td>@obj.EMAIL</td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Home" asp-action="EditCustomer" asp-route-id="@obj.CUSTOMER_ID">Edit</a>
+                </td>
             </tr>
         }
     </tbody>

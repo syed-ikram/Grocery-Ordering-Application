@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ikram Syed\\Desktop\\Projects\\GroceryOrderingApp\\GroceryOrderingApp.csproj": {}
+    "C:\\Users\\Ikram Syed\\Desktop\\Grocery-Ordering-Application\\GroceryOrderingApp\\GroceryOrderingApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ikram Syed\\Desktop\\Projects\\GroceryOrderingApp\\GroceryOrderingApp.csproj": {
+    "C:\\Users\\Ikram Syed\\Desktop\\Grocery-Ordering-Application\\GroceryOrderingApp\\GroceryOrderingApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ikram Syed\\Desktop\\Projects\\GroceryOrderingApp\\GroceryOrderingApp.csproj",
+        "projectUniqueName": "C:\\Users\\Ikram Syed\\Desktop\\Grocery-Ordering-Application\\GroceryOrderingApp\\GroceryOrderingApp.csproj",
         "projectName": "GroceryOrderingApp",
-        "projectPath": "C:\\Users\\Ikram Syed\\Desktop\\Projects\\GroceryOrderingApp\\GroceryOrderingApp.csproj",
+        "projectPath": "C:\\Users\\Ikram Syed\\Desktop\\Grocery-Ordering-Application\\GroceryOrderingApp\\GroceryOrderingApp.csproj",
         "packagesPath": "C:\\Users\\Ikram Syed\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ikram Syed\\Desktop\\Projects\\GroceryOrderingApp\\obj\\",
+        "outputPath": "C:\\Users\\Ikram Syed\\Desktop\\Grocery-Ordering-Application\\GroceryOrderingApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ikram Syed\\AppData\\Roaming\\NuGet\\NuGet.Config",
